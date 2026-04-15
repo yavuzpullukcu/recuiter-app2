@@ -1,0 +1,1 @@
+export { parseJobDescription } from "./jobParser";

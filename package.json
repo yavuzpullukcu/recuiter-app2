@@ -1,0 +1,53 @@
+{
+  "name": "recuter-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:push": "npx prisma db push",
+    "db:seed": "npx tsx prisma/seed.ts",
+    "db:seed-auth": "npx tsx prisma/seed-auth.ts",
+    "db:studio": "npx prisma studio",
+    "setup": "npm install && npx prisma generate && npx prisma db push && npx tsx prisma/seed.ts",
+    "intelligence:migrate": "npx tsx scripts/migrate-intelligence.ts",
+    "intelligence:pipeline": "npx tsx scripts/run-pipeline.ts",
+    "intelligence:test": "npx tsx scripts/test-intelligence.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.19.0",
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.8.0",
+    "html2canvas": "^1.4.1",
+    "jose": "^6.2.2",
+    "jsonwebtoken": "^9.0.3",
+    "jspdf": "^4.2.1",
+    "lucide-react": "^0.383.0",
+    "mammoth": "^1.12.0",
+    "next": "^14.2.0",
+    "nodemailer": "^8.0.5",
+    "pdf-parse": "^1.1.4",
+    "pdf2json": "^4.0.2",
+    "pdfjs-dist": "^3.11.174",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.0",
+    "postcss": "^8.4.0",
+    "prisma": "^5.19.0",
+    "tailwindcss": "^3.4.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0"
+  }
+}

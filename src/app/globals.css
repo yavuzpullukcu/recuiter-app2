@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Arkhetalent Brand Colors — guaranteed regardless of Tailwind JIT ─── */
+@layer utilities {
+  .bg-brand-50  { background-color: #e3f2f8 !important; }
+  .bg-brand-100 { background-color: #b9ddf0 !important; }
+  .bg-brand-200 { background-color: #8bc7e7 !important; }
+  .bg-brand-300 { background-color: #5cb1de !important; }
+  .bg-brand-400 { background-color: #38a1d4 !important; }
+  .bg-brand-500 { background-color: #1778bd !important; }
+  .bg-brand-600 { background-color: #146da9 !important; }
+  .bg-brand-700 { background-color: #105e93 !important; }
+  .bg-brand-800 { background-color: #00546f !important; }
+  .bg-brand-900 { background-color: #003a4f !important; }
+
+  .text-brand-50  { color: #e3f2f8 !important; }
+  .text-brand-100 { color: #b9ddf0 !important; }
+  .text-brand-200 { color: #8bc7e7 !important; }
+  .text-brand-300 { color: #5cb1de !important; }
+  .text-brand-400 { color: #38a1d4 !important; }
+  .text-brand-500 { color: #1778bd !important; }
+  .text-brand-600 { color: #146da9 !important; }
+  .text-brand-700 { color: #105e93 !important; }
+  .text-brand-800 { color: #00546f !important; }
+  .text-brand-900 { color: #003a4f !important; }
+
+  .border-brand-50  { border-color: #e3f2f8 !important; }
+  .border-brand-100 { border-color: #b9ddf0 !important; }
+  .border-brand-200 { border-color: #8bc7e7 !important; }
+  .border-brand-300 { border-color: #5cb1de !important; }
+  .border-brand-400 { border-color: #38a1d4 !important; }
+  .border-brand-500 { border-color: #1778bd !important; }
+  .border-brand-600 { border-color: #146da9 !important; }
+  .border-brand-700 { border-color: #105e93 !important; }
+  .border-brand-800 { border-color: #00546f !important; }
+
+  .ring-brand-500 { --tw-ring-color: #1778bd !important; }
+  .ring-brand-300 { --tw-ring-color: #5cb1de !important; }
+
+  .hover\:bg-brand-50:hover  { background-color: #e3f2f8 !important; }
+  .hover\:bg-brand-100:hover { background-color: #b9ddf0 !important; }
+  .hover\:bg-brand-600:hover { background-color: #146da9 !important; }
+  .hover\:bg-brand-700:hover { background-color: #105e93 !important; }
+  .hover\:bg-brand-800:hover { background-color: #00546f !important; }
+
+  .hover\:text-brand-600:hover { color: #146da9 !important; }
+  .hover\:text-brand-800:hover { color: #00546f !important; }
+
+  .hover\:border-brand-400:hover { border-color: #38a1d4 !important; }
+
+  .focus\:ring-brand-500:focus { --tw-ring-color: #1778bd !important; }
+
+  /* Sidebar nav active state */
+  .bg-brand-600\/10 { background-color: rgb(20 109 169 / 0.1) !important; }
+}

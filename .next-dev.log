@@ -1,0 +1,163 @@
+
+> recuter-app@1.0.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3002
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2s
+ ✓ Compiled /src/middleware in 184ms (72 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 2.8s (1081 modules)
+ GET / 200 in 3050ms
+ ○ Compiling /api/jobs ...
+ ✓ Compiled /api/jobs in 1608ms (607 modules)
+ ✓ Compiled (617 modules)
+ GET /api/jobs 200 in 1942ms
+ GET /api/candidates? 200 in 1948ms
+ GET /api/contracts 200 in 1951ms
+ GET /api/assignments 200 in 1955ms
+ GET /api/candidates 200 in 1959ms
+ GET /api/auth/me 200 in 1962ms
+ GET /api/jobs 200 in 24ms
+ GET /api/candidates? 200 in 38ms
+ GET /api/candidates 200 in 41ms
+ GET /api/auth/me 200 in 48ms
+ GET /api/assignments 200 in 50ms
+ GET /api/contracts 200 in 52ms
+ ✓ Compiled /api/companies in 301ms (619 modules)
+ GET /api/candidates 200 in 677ms
+ GET /api/companies 200 in 710ms
+ GET /api/candidates 200 in 37ms
+ GET /api/companies 200 in 34ms
+ GET /api/companies 200 in 40ms
+ GET /api/candidates 200 in 47ms
+ GET /api/companies 200 in 34ms
+ GET /api/candidates 200 in 43ms
+ GET /api/companies 200 in 47ms
+ GET /api/candidates 200 in 51ms
+ GET /api/companies 200 in 49ms
+ GET /api/candidates 200 in 63ms
+ GET /api/companies 200 in 51ms
+ GET /api/candidates 200 in 61ms
+ GET /api/companies 200 in 45ms
+ GET /api/candidates 200 in 55ms
+ GET /api/companies 200 in 38ms
+ GET /api/candidates 200 in 51ms
+ GET /api/companies 200 in 62ms
+ GET /api/candidates 200 in 68ms
+ GET /api/companies 200 in 42ms
+ GET /api/candidates 200 in 47ms
+ GET /api/companies 200 in 35ms
+ GET /api/candidates 200 in 39ms
+ GET /api/companies 200 in 37ms
+ GET /api/candidates 200 in 44ms
+ GET /api/contracts 200 in 20ms
+ GET /api/candidates 200 in 33ms
+ GET /api/assignments 200 in 37ms
+ GET /api/contracts 200 in 28ms
+ GET /api/assignments 200 in 30ms
+ GET /api/candidates 200 in 38ms
+ ✓ Compiled in 2.2s (1133 modules)
+ ✓ Compiled /api/auth/me in 257ms (614 modules)
+ ✓ Compiled /api/jobs in 1ms (614 modules)
+ ✓ Compiled in 1ms (617 modules)
+ GET /api/candidates? 200 in 1291ms
+ GET /api/auth/me 200 in 1351ms
+ GET /api/jobs 200 in 1086ms
+ ✓ Compiled /api/companies in 275ms (619 modules)
+ GET /api/companies 200 in 641ms
+ GET /api/candidates 200 in 645ms
+ GET /api/companies 200 in 55ms
+ GET /api/candidates 200 in 56ms
+ GET /api/contracts 200 in 39ms
+ GET /api/assignments 200 in 43ms
+ GET /api/candidates 200 in 54ms
+ GET /api/contracts 200 in 47ms
+ GET /api/assignments 200 in 51ms
+ GET /api/candidates 200 in 45ms
+ ○ Compiling /api/jobs ...
+ ✓ Compiled /api/jobs in 2.8s (1095 modules)
+ ✓ Compiled in 1ms (612 modules)
+ GET /api/candidates? 200 in 1843ms
+ GET /api/jobs 200 in 1844ms
+ GET /api/auth/me 200 in 1851ms
+ ✓ Compiled /api/companies in 198ms (614 modules)
+ GET /api/candidates 200 in 457ms
+ GET /api/companies 200 in 497ms
+ GET /api/candidates 200 in 65ms
+ GET /api/companies 200 in 53ms
+ ✓ Compiled /api/assignments in 212ms (616 modules)
+ ✓ Compiled (619 modules)
+ GET /api/candidates 200 in 450ms
+ GET /api/contracts 200 in 481ms
+ GET /api/assignments 200 in 484ms
+ GET /api/candidates 200 in 87ms
+ GET /api/contracts 200 in 74ms
+ GET /api/assignments 200 in 62ms
+ GET /api/companies 200 in 123ms
+ GET /api/candidates 200 in 139ms
+ GET /api/companies 200 in 49ms
+ GET /api/candidates 200 in 53ms
+ GET /api/companies 200 in 33ms
+ GET /api/candidates 200 in 38ms
+ GET /api/companies 200 in 29ms
+ GET /api/candidates 200 in 34ms
+ GET /api/companies 200 in 38ms
+ GET /api/candidates 200 in 45ms
+ GET /api/companies 200 in 32ms
+ GET /api/candidates 200 in 44ms
+ GET /api/companies 200 in 38ms
+ GET /api/candidates 200 in 46ms
+ GET /api/companies 200 in 34ms
+ GET /api/candidates 200 in 39ms
+ GET /api/contracts 200 in 61ms
+ GET /api/candidates 200 in 67ms
+ GET /api/assignments 200 in 97ms
+ GET /api/candidates 200 in 59ms
+ GET /api/contracts 200 in 64ms
+ GET /api/assignments 200 in 46ms
+ ✓ Compiled in 621ms (1135 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1610ms (1124 modules)
+ GET /api/companies 404 in 1870ms
+ GET /api/candidates 404 in 1875ms
+ GET /api/companies 200 in 57ms
+ GET /api/candidates 200 in 62ms
+ ✓ Compiled in 325ms (1138 modules)
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1593ms (1350 modules)
+ GET /api/candidates 404 in 1902ms
+ GET /api/companies 404 in 1906ms
+ GET /api/candidates 200 in 56ms
+ GET /api/companies 200 in 71ms
+ GET /api/contracts 200 in 64ms
+ GET /api/candidates 200 in 69ms
+ GET /api/assignments 200 in 89ms
+ GET /api/contracts 200 in 42ms
+ GET /api/candidates 200 in 59ms
+ GET /api/assignments 200 in 48ms
+ ✓ Compiled in 1527ms (1364 modules)
+ ✓ Compiled in 390ms (1364 modules)
+ ✓ Compiled in 192ms (709 modules)
+ ✓ Compiled in 2.5s (1364 modules)
+ ○ Compiling /api/jobs ...
+ ✓ Compiled /api/jobs in 549ms (657 modules)
+ ✓ Compiled (660 modules)
+ GET /api/candidates? 200 in 926ms
+ GET /api/jobs 200 in 956ms
+ GET /api/auth/me 200 in 959ms
+ GET /api/candidates 200 in 38ms
+ GET /api/companies 200 in 53ms
+ GET /api/candidates 200 in 47ms
+ GET /api/companies 200 in 47ms
+ GET /api/companies 200 in 127ms
+ GET /api/candidates 200 in 130ms
+ GET /api/companies 200 in 38ms
+ GET /api/candidates 200 in 42ms
+ GET /api/companies 200 in 36ms
+ GET /api/candidates 200 in 37ms
+ GET /api/companies 200 in 33ms
+ GET /api/candidates 200 in 38ms

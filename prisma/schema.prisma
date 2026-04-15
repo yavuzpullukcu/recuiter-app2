@@ -1,0 +1,300 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// ─── AUTH & LICENSING ──────────────────────────────────────────────────
+
+model User {
+  id            Int           @id @default(autoincrement())
+  email         String        @unique
+  passwordHash  String
+  firstName     String?
+  lastName      String?
+  avatar        String?
+  isApproved    Boolean       @default(false)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  subscription  Subscription?
+  candidates    Candidate[]
+  jobs          Job[]
+  assignments   Assignment[]
+  companies     Company[]
+  projects      Project[]
+  activities    Activity[]
+
+  @@index([email])
+}
+
+model Subscription {
+  id               Int       @id @default(autoincrement())
+  userId           Int       @unique
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  plan             String    @default("starter") // starter, pro, enterprise
+  maxCandidates    Int       @default(20)
+  maxJobs          Int       @default(5)
+  maxTeamMembers   Int       @default(1)
+
+  stripeCustomerId String?
+  stripeSubscriptionId String?
+  status           String    @default("active") // active, paused, cancelled
+
+  createdAt        DateTime  @default(now())
+  expiresAt        DateTime?
+  renewalDate      DateTime?
+
+  @@index([userId])
+}
+
+// ─── CORE RECRUITMENT ─────────────────────────────────────────────────
+
+model Job {
+  id              Int         @id @default(autoincrement())
+  userId          Int
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  title           String
+  company         String?
+  description     String
+  skills          String      // JSON array of extracted skills
+  location        String?
+  startDate       String?
+  endDate         String?
+  workload        String?
+  contractType    String?
+  status          String      @default("active") // active, closed, draft
+  jdFile          String?     // Path to uploaded JD PDF file
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  candidates      Candidate[]
+  projects        Project[]
+
+  @@index([userId])
+  @@index([status])
+}
+
+model Candidate {
+  id              Int         @id @default(autoincrement())
+  userId          Int
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name            String
+  title           String?
+  company         String?
+  location        String?
+  linkedin        String?
+  email           String?
+  phone           String?
+  skills          String      // JSON array of skills
+  experience      Int         @default(0)
+  status          String      @default("new") // new, contacted, interview, offered, rejected, placed
+  rating          Int         @default(3)
+  notes           String?
+  type            String      @default("external") // internal, external
+  cvFile          String?     // Path to uploaded CV PDF file
+  jobId           Int?
+  job             Job?        @relation(fields: [jobId], references: [id])
+
+  activities      Activity[]
+  jobMatches      JobMatch[]
+  assignments     Assignment[]
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([status])
+  @@index([jobId])
+}
+
+model Activity {
+  id              Int         @id @default(autoincrement())
+  userId          Int
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  type            String      // note, status_change, email, call, interview
+  content         String
+  candidateId     Int
+  candidate       Candidate   @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+  createdAt       DateTime    @default(now())
+
+  @@index([userId])
+  @@index([candidateId])
+}
+
+// ─── FIRMA ATAMALARI & KONTRAT ─────────────────────────────────────────
+
+model Company {
+  id              Int         @id @default(autoincrement())
+  userId          Int
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name            String
+  description     String?
+
+  projects        Project[]
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@index([userId])
+}
+
+model Project {
+  id              Int         @id @default(autoincrement())
+  userId          Int
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name            String
+  companyId       Int
+  company         Company     @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  jobId           Int?
+  job             Job?        @relation(fields: [jobId], references: [id])
+
+  assignments     Assignment[]
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([companyId])
+}
+
+model Assignment {
+  id            Int         @id @default(autoincrement())
+  userId        Int
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  candidateId   Int
+  candidate     Candidate   @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+  projectId     Int
+  project       Project     @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  // 🚀 YENİ EKLENEN PİPELİNE ALANLARI
+  contactPerson String?     // Örn: Sabine Meyer
+  contactTitle  String?     // Örn: HR Manager
+  status        String?     @default("CV Gönderildi") // Süreç durumu
+
+  weeklyHours   Int         @default(40)
+  hourlyRate    Float       @default(0)
+  currency      String      @default("EUR")
+  notes         String?
+
+  contract      Contract?
+
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([candidateId])
+  @@index([projectId])
+}
+
+model Contract {
+  id              Int          @id @default(autoincrement())
+  assignmentId    Int          @unique
+  assignment      Assignment   @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+
+  startDate       String
+  endDate         String
+  contractFile    String?      // 🚀 BU SATIRI EKLE (Kırmızı hatayı bu çözer)
+  status          String       @default("active")
+  renewalCount    Int          @default(0)
+
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+}
+
+// ─── JOB INTELLIGENCE & AI MATCHING ─────────────────────────────────────
+
+model RawJob {
+  id              Int              @id @default(autoincrement())
+  source          String
+  externalJobId   String?
+  url             String?
+  titleRaw        String
+  descriptionRaw  String
+  locationRaw     String?
+  postedAtRaw     String?
+  scrapedAt       DateTime         @default(now())
+  rawPayload      String
+  hashSignature   String           @unique
+  parsed          Boolean          @default(false)
+  normalizedJob   NormalizedJob?
+
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+model NormalizedJob {
+  id                       Int              @id @default(autoincrement())
+  rawJobId                 Int              @unique
+  rawJob                   RawJob           @relation(fields: [rawJobId], references: [id], onDelete: Cascade)
+
+  titleClean               String
+  roleFamily               String?
+  seniority                String?
+  techStackJson            String?
+  mustHaveJson             String?
+  niceToHaveJson           String?
+  languagesJson            String?
+  remoteType               String?
+  contractModel            String?
+  location                 String?
+  locationCountry          String?
+  projectDuration          String?
+  startDate                String?
+  weeklyHours              String?
+  capacityPercent          String?
+  rateMax                  String?
+
+  urgencyScore             Int              @default(0)
+  bodyLeasingFitScore      Int              @default(0)
+  candidateDifficultyScore Int              @default(0)
+
+  summary                  String?
+  customerType             String?
+  sourceSignals            String?
+  status                   String           @default("new")
+
+  matches                  JobMatch[]
+
+  createdAt                DateTime         @default(now())
+  updatedAt                DateTime         @updatedAt
+}
+
+model JobMatch {
+  id              Int           @id @default(autoincrement())
+  normalizedJobId Int
+  normalizedJob   NormalizedJob @relation(fields: [normalizedJobId], references: [id], onDelete: Cascade)
+
+  candidateId     Int
+  candidate       Candidate     @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+  // AI Matching Fields
+  matchScore      Int           @default(0)
+  explanation     String?       // AI'nın özet değerlendirmesi
+  aiConfidence    Float?        // AI'nın analizine olan güven oranı
+  interviewQuestions String?    // AI tarafından üretilen mülakat soruları (JSON string)
+  aiStrengths     String?       // Adayın güçlü yanları (JSON string)
+  aiRiskAreas     String?       // Riskli alanlar (JSON string)
+  aiRecommendations String?     // Adaya veya yöneticiye tavsiyeler
+  roleFit         String?       // "strong", "medium", "weak"
+
+  missingSkills   String?
+  hardFilterPass  Boolean       @default(false)
+  skillOverlap    Float         @default(0)
+
+  createdAt       DateTime      @default(now())
+}
